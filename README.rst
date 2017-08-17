@@ -12,6 +12,13 @@ Installing
 
 Supports Python 3.3+
 
+Install from pip:
+
+.. code-block:: bash
+
+     pip install fa2l
+
+
 To build and install run from source:
 
 .. code-block:: bash
@@ -50,6 +57,22 @@ Usage
     nx.draw_networkx(G, positions, cmap=plt.get_cmap('jet'), node_size=50, with_labels=False)
     plt.show()
 
+Example of social graph rendered with force atlas 2 layout:
+
+.. image:: https://raw.githubusercontent.com/bosiakov/fa2l/master/_static/result.jpg
+
+Features
+--------
+
+Force Atlas 2 features these settings:
+
+- *Approximate Repulsion*: Barnes Hut optimization: n² complexity to n.ln(n).
+- *Gravity*: Attracts nodes to the center. Prevents islands from drifting away.
+- *Dissuade Hubs*: Distributes attraction along outbound edges. Hubs attract less and thus are pushed to the borders.
+- *LinLog mode*: Switch ForceAtlas model from lin-lin to lin-log. Makes clusters more tight.
+- *Prevent Overlap*. WARNING! Does not work very well.
+- *Tolerance*: How much swinging you allow. Above 1 discouraged. Lower gives less speed and more precision.
+- *Edge Weight Influence*: How much influence you give to the edges weight. 0 is "no influence" and 1 is "normal".
 
 Documentation
 -------------
