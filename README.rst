@@ -7,6 +7,10 @@ This implementation is based on this `paper <http://journals.plos.org/plosone/ar
 
 **Warning:** Some features (especially *Prevent Overlapping*) are not completely implemented. I'm waiting for your pull-requests.
 
+Example of social graph rendered with force atlas 2 layout:
+
+.. image:: https://raw.githubusercontent.com/bosiakov/fa2l/master/_static/result.jpg
+
 Installing
 ----------
 
@@ -37,9 +41,9 @@ Usage
     G = nx.erdos_renyi_graph(100, 0.15, directed=False)
 
     positions = force_atlas2_layout(G,
-                                    None,
                                     iterations=1000,
-
+                                    pos_list=None,
+                                    node_masses=None,
                                     outbound_attraction_distribution=False,
                                     lin_log_mode=False,
                                     prevent_overlapping=False,
@@ -57,9 +61,6 @@ Usage
     nx.draw_networkx(G, positions, cmap=plt.get_cmap('jet'), node_size=50, with_labels=False)
     plt.show()
 
-Example of social graph rendered with force atlas 2 layout:
-
-.. image:: https://raw.githubusercontent.com/bosiakov/fa2l/master/_static/result.jpg
 
 Features
 --------
