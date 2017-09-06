@@ -9,6 +9,7 @@ from .force import apply_repulsion, apply_gravity, apply_attraction, get_repulsi
 
 def force_atlas2_layout(graph,
                         pos_list=None,
+                        node_masses=None,
                         iterations=100,
 
                         outbound_attraction_distribution=False,
@@ -36,6 +37,10 @@ def force_atlas2_layout(graph,
         Initial positions for nodes as a dictionary with node as keys
         and values as a coordinate list or tuple.  If None, then use
         random initial positions.
+
+    node_masses : dict or None  optional (default=None)
+        Predefined masses for nodes with node as keys and masses as values.
+        If None, then use degree of nodes.
 
     iterations : int  optional (default=50)
         Number of iterations
@@ -96,6 +101,11 @@ def force_atlas2_layout(graph,
     if pos_list is not None:
         pos = numpy.asarray([pos_list[i] for i in graph.nodes()])
 
+    masses = None
+
+    if node_masses is not None:
+        masses = numpy.asarray([node_masses[node] for node in graph.nodes()])
+
     assert G.shape == (G.shape[0], G.shape[0]), "G is not 2D square"
     assert numpy.all(G.T == G), "G is not symmetric."
 
@@ -108,7 +118,10 @@ def force_atlas2_layout(graph,
     nodes = []
     for i in range(0, G.shape[0]):
         n = Node()
-        n.mass = 1 + numpy.sum(G[i])
+        if node_masses is None:
+            n.mass = 1 + numpy.sum(G[i])
+        else:
+            n.mass = masses[i]
         n.old_dx = 0
         n.old_dy = 0
         n.dx = 0
