@@ -160,7 +160,8 @@ def force_atlas2_layout(graph,
             root_region = Quadtree(nodes)
             root_region.build()
 
-        apply_repulsion(repulsion, nodes, barnes_hut_optimize=barnes_hut_optimize, region=root_region)
+        apply_repulsion(repulsion, nodes, barnes_hut_optimize=barnes_hut_optimize, barnes_hut_theta=barnes_hut_theta,
+                        region=root_region)
         apply_gravity(gravity_force, nodes, gravity, scaling_ratio)
 
         apply_attraction(attraction, nodes, edges, edge_weight_influence)
