@@ -119,7 +119,7 @@ def force_atlas2_layout(graph,
     for i in range(0, G.shape[0]):
         n = Node()
         if node_masses is None:
-            n.mass = 1 + numpy.sum(G[i])
+            n.mass = 1 + numpy.count_nonzero(G[i])
         else:
             n.mass = masses[i]
         n.old_dx = 0
