@@ -11,7 +11,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name="fa2l",
-    version="0.2",
+    version="0.2.1",
     author="Eugene Bosiakov",
     author_email="eugenebosyakov@gmail.com",
 
@@ -37,7 +37,7 @@ setup(
     ],
 
     install_requires=[
-        "networkx<2.0.0",
+        "networkx>=2.4,<3",
         "numpy"
     ],
 
